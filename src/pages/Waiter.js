@@ -19,6 +19,7 @@ class Waiter extends Component {
     this.state = {
       menu,
       clientInfo: [],
+      product: [],
     };
     // guarda una referencia al componente Order para utilizar sus funciones
     this.orderElement = React.createRef();
