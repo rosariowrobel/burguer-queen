@@ -7,6 +7,7 @@ import Order from "../components/Waiter/Order";
 import Menu from "../Menu";
 import "../components/Waiter/ClientInfo.css";
 import db from "../firebase.js";
+import { Link } from "react-router-dom";
 
 const menu = Menu.menu;
 class Waiter extends Component {
@@ -30,7 +31,6 @@ class Waiter extends Component {
     const index = this.products.findIndex((prod) => product.name === prod.name);
     //2: incrementar el atributo quantity +1
     this.products[index].quantity += 1;
-
     //3: Recargar Order con producto actualizados
     this.orderElement.current.loadProducts(this.products);
   };
@@ -78,17 +78,26 @@ class Waiter extends Component {
   sendToKitchen = () => {
     // Utilizamos la referencia
     const total = this.orderElement.current.state.total;
+    let date = new Date().toLocaleString();
 
-    db.collection("orders").add({
-      client: {
+    db.collection("orders")
+      .add({
         name: this.state.clientName,
         table: this.state.clientTable,
-      },
-      products: this.products,
-      total: "$" + total,
-      date: "",
-      state: "in progress",
-    });
+        products: this.products,
+        total: "$" + total,
+        date,
+        state: "in progress",
+      })
+      .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+        alert("Pedido enviado a cocina");
+      })
+
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+        alert("Error al enviar, intentelo denuevo");
+      });
   };
 
   render() {
@@ -180,9 +189,11 @@ class Waiter extends Component {
             ></Order>
           </div>
           <div className="summary">
-            <button className="buttonEnviar" onClick={this.sendToKitchen}>
-              Enviar a cocina
-            </button>
+            <Link to="/cocina">
+              <button className="buttonEnviar" onClick={this.sendToKitchen}>
+                Enviar a cocina
+              </button>
+            </Link>
             <button className="buttonCancelar"> Cancelar pedido </button>
           </div>
         </div>
