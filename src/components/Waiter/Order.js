@@ -6,6 +6,7 @@ class Order extends Component {
   state = {
     products: [],
     total: 0,
+    price: [],
   };
 
   sumTotal = () => {

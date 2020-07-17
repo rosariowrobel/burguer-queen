@@ -79,3 +79,13 @@ hr {
     max-height: 40px;
   }
 }
+
+.hamburguesa {
+  align-items: center;
+display: flex;
+height: 100vh;
+}
+
+.secundario{
+  margin: 0 auto;
+}

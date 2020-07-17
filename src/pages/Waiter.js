@@ -9,6 +9,7 @@ import "../components/Waiter/ClientInfo.css";
 import db from "../firebase.js";
 import { Link } from "react-router-dom";
 
+
 const menu = Menu.menu;
 class Waiter extends Component {
   //variables locales o atributos
@@ -141,7 +142,7 @@ class Waiter extends Component {
               })}
           </div>
           <div>
-            <h1> Almuerzo </h1> <hr size="3px" />
+            <h1> Almuerzo y Cena</h1> <hr size="3px" />
             {this.state.menu
               .filter((product) => {
                 return product.type === "launch";
@@ -159,6 +160,8 @@ class Waiter extends Component {
                 );
               })}
           </div>
+
+
           <div>
             <h1> Para beber </h1> <hr size="3px" />
             {this.state.menu
@@ -200,6 +203,12 @@ class Waiter extends Component {
       </div>
     );
   }
+
 }
+
+
+
+
+
 
 export default Waiter;
