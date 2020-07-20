@@ -1,6 +1,6 @@
 # Burger Queen
 
-![burger-queen](/img/logo.png)
+![burger-queen](/img/logobqueen.png)
 
 ***
 
